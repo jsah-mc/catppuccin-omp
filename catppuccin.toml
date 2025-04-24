@@ -11,15 +11,19 @@ final_space = true
   red = '#f38ba8'
   green = '#A6E3A1'
 
-[secondary_prompt]
-  template = '<p:blue,transparent></><,p:blue> > </><p:blue,transparent></> '
-  foreground = 'p:text'
-  background = 'transparent'
 
 [transient_prompt]
-  template = '<p:blue,transparent></><,p:blue></><p:blue,transparent></> '
-  foreground = 'p:wight'
+  foreground_templates = [
+    "{{if gt .Code 0}}p:red{{end}}",
+    "{{if eq .Code 0}}p:green{{end}}",
+  ]
   background = 'transparent'
+  template = '❯ '
+
+[secondary_prompt]
+  foreground = 'p:text'
+  background = 'transparent'
+  template = '❯❯ '
 
 [upgrade]
   source = 'cdn'
@@ -30,7 +34,12 @@ final_space = true
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
-
+  [[blocks.segments]]
+    template = "╭─"
+    type = "text"
+    style = "plain"
+    foreground = "p:wight"
+    background = "transparent"
   [[blocks.segments]]
     leading_diamond = ''
     template = '{{.Icon}} '
@@ -91,4 +100,26 @@ final_space = true
     ]
     foreground = 'p:text'
     powerline_symbol = ''
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '╰─'
+    type = 'status'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      always_enabled = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      "{{if gt .Code 0}}p:red{{end}}",
+      "{{if eq .Code 0}}p:green{{end}}",
+    ]
+    background = 'transparent'
+    template = '❯'
 
