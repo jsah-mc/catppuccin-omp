@@ -2,14 +2,14 @@ version = 3
 final_space = true
 
 [palette]
-  blue = '#89B4FA'
-  lavender = '#B4BEFE'
-  os = '#ACB0BE'
-  pink = '#F5C2E7'
-  text = '#1E1E2E'
-  wight = '#CDD6F4'
-  red = '#f38ba8'
-  green = '#A6E3A1'
+  blue = '#8caaee'
+  lavender = '#ca9ee6'
+  os = '#303446'
+  pink = '#f4b8e4'
+  text = '#303446'
+  wight = '#C6D0F5'
+  red = '#e78284'
+  green = '#A6D189'
 
 
 [transient_prompt]
@@ -18,12 +18,12 @@ final_space = true
     "{{if eq .Code 0}}p:green{{end}}",
   ]
   background = 'transparent'
-  template = '❯ '
+  template = ' '
 
 [secondary_prompt]
   foreground = 'p:text'
   background = 'transparent'
-  template = '❯❯ '
+  template = ' '
 
 [upgrade]
   source = 'cdn'
@@ -34,36 +34,38 @@ final_space = true
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
-  [[blocks.segments]]
-    template = "╭─"
-    type = "text"
-    style = "plain"
-    foreground = "p:wight"
-    background = "transparent"
+  # [[blocks.segments]]
+    # template = "╭─"
+    # type = "text"
+    # style = "plain"
+    # foreground = "p:wight"
+    # background = "transparent"
   [[blocks.segments]]
     leading_diamond = ''
-    template = '{{.Icon}} '
+    template = '{{.Icon}}'
     foreground = 'p:wight'
-    powerline_symbol = ''
+    trailing_diamond = ''
     background = 'p:blue'
     type = 'os'
     style = 'diamond'
 
   [[blocks.segments]]
+    leading_diamond = ' '
     template = '{{ .UserName }}@{{ .HostName }}'
     foreground = 'p:text'
-    powerline_symbol = ''
-    background = 'p:blue'
+    trailing_diamond = ''
+    background = 'p:lavender'
     type = 'session'
     style = 'diamond'
 
   [[blocks.segments]]
-    template = ' {{ .Path }}'
+    template = '{{ .Path }}'
     foreground = 'p:text'
-    powerline_symbol = ''
+    leading_diamond = ' '
+    trailing_diamond = ''
     background = 'p:pink'
     type = 'path'
-    style = 'powerline'
+    style = 'diamond'
 
     [blocks.segments.properties]
       folder_icon = '....'
@@ -71,12 +73,13 @@ final_space = true
       style = 'agnoster_short'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}'
+    template = '{{ .HEAD }}'
     foreground = 'p:text'
-    powerline_symbol = ''
+    leading_diamond = ' '
+    trailing_diamond = ''
     background = 'p:lavender'
     type = 'git'
-    style = 'powerline'
+    style = 'diamond'
     newline = true
 
     [blocks.segments.properties]
@@ -90,28 +93,11 @@ final_space = true
       rebase_icon = ' '
       revert_icon = ' '
       tag_icon = ' '
-  [[blocks.segments]]
-    template = ' {{ .Code }}'
-    type = 'text'
-    style = 'powerline'
-    background_templates = [
-      "{{if gt .Code 0}}p:red{{end}}",
-      "{{if eq .Code 0}}p:green{{end}}",
-    ]
-    foreground = 'p:text'
-    powerline_symbol = ''
+
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
-
-  [[blocks.segments]]
-    template = '╰─'
-    type = 'status'
-    style = 'plain'
-
-    [blocks.segments.properties]
-      always_enabled = true
 
   [[blocks.segments]]
     type = 'text'
@@ -121,5 +107,4 @@ final_space = true
       "{{if eq .Code 0}}p:green{{end}}",
     ]
     background = 'transparent'
-    template = '❯'
-
+    template = ''
